@@ -2,8 +2,9 @@ require 'docking_station'
 
 describe DockingStation do
   let(:bike) { double :bike}
-  let(:capacity) { DockingStation::DEFAULT_CAPACITY }
+  let(:capacity) { DockingStation::DEFAULT_CAPACITY}
   it { is_expected.to respond_to(:release_bike) }
+  it { is_expected.to respond_to(:dock).with(1).argument }
 
   it 'docks something' do
     expect(subject.dock(bike)).to eq [bike]
@@ -14,7 +15,11 @@ describe DockingStation do
     expect(subject.bikes.last).to eq bike
   end
 
-  it { is_expected.to respond_to(:dock).with(1).argument }
+  describe '#initialize' do
+    it 'has a capacity of 20' do
+      expect(subject.capacity).to eq(20)
+    end
+  end
 
   describe '#release_bike' do
     it 'releases a bike' do
@@ -35,5 +40,7 @@ describe '#dock' do
     expect { subject.dock bike }.to raise_error 'Docking station full'
   end
 end
+
+
 
 end
