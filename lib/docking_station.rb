@@ -1,4 +1,5 @@
 require './lib/bike'
+require './lib/van'
 
 class DockingStation
   DEFAULT_CAPACITY = 20
@@ -11,7 +12,7 @@ class DockingStation
 
   def release_bike
     fail 'No bikes available' if empty?
-    raise 'Bike is broken' if @bikes[-1].working? == false
+    raise 'Bike is broken' if @bikes[-1].broken? == true
     @bikes.pop
   end
 
