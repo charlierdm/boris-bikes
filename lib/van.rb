@@ -1,21 +1,22 @@
 class Van
 
+  attr_reader :bikes_transit, :capacity
+
   def initialize(capacity = 5)
-    @broken_bikes = []
+    @bikes_transit = []
     @capacity = capacity
   end
 
   def take_bike(bike)
-    @broken_bikes << bike
+    @bikes_transit << bike
   end
 
   def give_bike
-    @broken_bikes.pop
+    @bikes_transit.pop
   end
 
   def full?
-    @broken_bikes.count >= @capacity
+    @bikes_transit.count >= @capacity
   end
-
 
 end
